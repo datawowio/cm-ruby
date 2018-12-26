@@ -12,7 +12,7 @@ module Datawow
     end
 
     def successful?
-      [200, 201].include? status
+      ["200", "201"].include? status
     end
   end
 end

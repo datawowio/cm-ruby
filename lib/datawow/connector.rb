@@ -20,6 +20,7 @@ module Datawow
     def post(data = {})
       @method = :POST
       response = send_request(data)
+
       body = JSON.parse response.body
 
       Response.new(body['data'], response.code, body['meta']['message'], body['meta'], 1)
@@ -74,7 +75,7 @@ module Datawow
 
     def build_request(uri)
       request = {}
-      token = if Datawow.respond_to?(:project_key)
+      token = if Datawow.project_key
                 Datawow.project_key
               else
                 @token
@@ -107,7 +108,8 @@ module Datawow
 
     def base_point(type)
       {
-        image: 'https://kiyo-image.datawow.io/api',
+        # image: 'https://kiyo-image.datawow.io/api',
+        image: 'https://kiyo-image-staging.datawow.io/api',
         ai:    'https://kiyo-image.datawow.io/api',
         text:  'https://kiyo-text.datawow.io/api',
         video: 'https://kiyo-image.datawow.io/api'
