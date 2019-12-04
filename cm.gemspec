@@ -4,9 +4,9 @@ lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
-  s.name          = 'cm'
-  s.version       = '1.5.0'
-  s.date          = '2019-10-29'
+  s.name          = 'cm-datawow'
+  s.version       = '0.0.1'
+  s.date          = '2019-12-04'
   s.summary       = 'HTTP RESTFul for calling CM APIs'
   s.description   = 'Content Moderation suite'
   s.post_install_message = File.read('INSTALL.md') if File.exist?('INSTALL.md')

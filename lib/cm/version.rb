@@ -1,3 +1,3 @@
 module CM
-  VERSION = '1.5.0'.freeze
+  VERSION = '0.0.1'.freeze
 end
