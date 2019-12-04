@@ -100,11 +100,7 @@ module CM
 
     def base_point(type)
       {
-        image: 'https://image.datawow.io/api',
-        ai: 'https://image.datawow.io/api',
-        text: 'https://text.datawow.io/api',
-        video: 'https://image.datawow.io/api',
-        moderation: 'https://api.datawow.io/api'
+        moderation: 'https://cm-api.datawow.io/api'
       }[type]
     end
   end
