@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    datawow (1.4.3)
+    cm (1.5.0)
       json (~> 1.8, >= 1.8.3)
 
 GEM
@@ -32,7 +32,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  datawow!
+  cm!
   minitest (~> 5.11, >= 5.11.3)
   rake (~> 12.3)
   simplecov (~> 0.15.1)

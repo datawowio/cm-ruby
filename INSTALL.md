@@ -1,7 +1,7 @@
-After install datawow
+After install CM
 
 Run the generator
 
-  rails generate datawow:install
+  rails generate cm:install
 
-This will install an initializer which describes ALL of Datawow's configuration options.
+This will install an initializer which describes ALL of CM's configuration options.
