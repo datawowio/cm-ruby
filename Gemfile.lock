@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cm-datawow (0.0.2)
+    cm-datawow (0.0.3)
       json (~> 2.2)
 
 GEM
