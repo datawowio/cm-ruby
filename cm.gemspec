@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name          = 'cm-datawow'
-  s.version       = '0.0.3'
+  s.version       = '0.0.4'
   s.date          = '2019-12-06'
   s.summary       = 'HTTP RESTFul for calling CM APIs'
   s.description   = 'Content Moderation suite'
