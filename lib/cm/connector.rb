@@ -7,7 +7,7 @@ require 'json'
 
 require File.expand_path('response.rb', __dir__)
 
-module Datawow
+module CM
   # :nodoc:
   class Connector
     def initialize(path, type, token: '', version_api: 'v1')
@@ -71,7 +71,7 @@ module Datawow
 
     def build_request(uri)
       request = {}
-      token = @token || Datawow.project_key
+      token = @token || CM.project_key
 
       if (token || '').empty?
         raise ArgumentError, 'project\'s token has missed. To config about token check our document'
@@ -90,7 +90,7 @@ module Datawow
         raise ArgumentError, 'HTTP method is not exist, We allowed GET, POST, PUT, DELET only'
       end
 
-      request['User-Agent'] = 'Datawow Ruby gem client'
+      request['User-Agent'] = 'CM Ruby gem client'
       request['Accept'] = 'application/json'
       request['Content-Type'] = 'application/json'
       request['Authorization'] = token
@@ -100,11 +100,7 @@ module Datawow
 
     def base_point(type)
       {
-        image: 'https://image.datawow.io/api',
-        ai: 'https://image.datawow.io/api',
-        text: 'https://text.datawow.io/api',
-        video: 'https://image.datawow.io/api',
-        moderation: 'https://api.datawow.io/api'
+        moderation: 'https://cm-api.datawow.io/api'
       }[type]
     end
   end

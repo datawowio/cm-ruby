@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Datawow
+module CM
   class Response
     attr_reader :body, :code
 
