@@ -1,212 +1,176 @@
-# Datawow-ruby
-
-HTTP RESTFul for calling DataWow APIs
-
-###### support or question support@datawow.io
+# Content Moderation Ruby Client
 
 # Installation
+
+Installing via rubygems:
+
 ```ruby
-gem 'datawow', '~> 1.5.0'
+gem 'cm-datawow', '~> 0.0.2'
 ```
 
 ### Rails
 
-```console
-$ rails generate datawow:install
+```bash
+$ rails generate cm:install
 ```
-**Note**: Rails 4.1 or above
 
+# Configuration
+
+First configure your project key:
+
+```ruby
+CM.project_key = YOUR_PROJECT_KEY
+```
 # Usage
 
-To call our module, use `Datawow` followed by any of the classes provided in our APIs
+There are 3 methods available in moderation class (`create`, `all`, `find_by`). Each
+method returns a response of type `CM::Response`, which has two attributes,
+`body` and `code`. You can simply access response's body by calling `.body`
 
-## Classes explanation
-These classes are instance methods we have created for you. You can use our provider or the recommended methods, [here](#dynamically_token_setting), when using our APIs
-
-#### Image classes `Datawow.image_*`
-There are 6 APIs for image class
-
-## instance method
+### Create
 ```ruby
-Datawow.image_closed_question
-Datawow.image_photo_tag
-Datawow.image_choice
-Datawow.image_message
-Datawow.nanameue_human
-Datawow.document_verification
-```
----
-
-#### Video class `Datawow.video_*`
-There is 1 API for video class
-
-```ruby
-Datawow.video_classification
-```
----
-#### Text classes `Datawow.text_*`
-There are 4 APIs for text class
-
-```ruby
-Datawow.text_closed_question
-Datawow.text_category
-Datawow.text_conversation
-Datawow.text_ja
+CM.project_key = YOUR_PROJECT_KEY
+params = {
+  data: data,
+  postback_url: postback_url,
+  postback_method: postback_method,
+  custom_id: custom_id
+}
+CM.moderation.create(params)
 ```
 
----
+`data` could be text or image's url depends on your project's template.
 
-#### Prediction class `Datawow.prediction`
-There is 1 API for prediction class
+#### params
 
-```ruby
-Datawow.prediction
+| Field        | Type           | Required  | Description |
+| ------------- |:-------------:| :-----:| :-----|
+| data | string | **Yes** | URL of image |
+| postback_url| string| No | URL for answer callback once image has been checked |
+| postback_method| string | No | Configuration HTTP method GET POST PUT PATCH |
+| custom_id | string | No | Custom ID that used for search |
+
+#### result
+```
+response = CM.moderation.create({
+  data: YOUR_DATA,
+  custom_id: 'data-1'
+})
+
+print(response.body)
 ```
 
----
-
-#### Moderation class `Datawow.moderation`
-There is 1 API for moderation class
+You will receive response like below, once you created moderation successfully.
 
 ```ruby
-Datawow.moderation
-```
-
-Above methods are shortcuts for calling the following classes
-```ruby
-Datawow::ImageClosedQuestion
-Datawow::PhotoTag
-Datawow::ImageChoice
-Datawow::ImageMessage
-Datawow::NanameueHuman
-Datawow::VideoClassification
-Datawow::TextClosedQuestion
-Datawow::TextCategory
-Datawow::TextConversation
-Datawow::TextJa
-Datawow::Prediction
-Datawow::DocumentVerification
-Datawow::Moderation
-```
----
-## Available methods in our APIs
-There are 3 main functions for each class: `create`, `find_by` and `all`
-#### `create`
-```ruby
-Datawow.[class].create(data: {})
-```
-
-#### `find_by`
-```ruby
-Datawow.[class].find_by({id: "_image_id"})
-```
-
-#### `all`
-```ruby
-Datawow.[class].all()
-```
-
-
----
-## Example
-
-After the library has been called for the first time, the associated modules will be initialized and you could then call using the package name instead. [here](#class_explanation)
-##### Setting the project key
-```ruby
-Datawow.project_key = '_token'
-```
-##### Working with the methods
-#### `create`
-```ruby
-Datawow.[class].create({data: "image URL"})
-```
-
-#### `find_by`
-```ruby
-Datawow.[class].find_by({id: "_image_id"})
-```
-
-#### `all`
-```ruby
-Datawow.[class].all({page: '_page', per_page: '_per_page'})
-```
----
-
-
-## Dynamically setting the token
-
-If you have many projects, we recommend using the following example instead of the one shown above if you would like to create an object and change its token dynamically
-
-```ruby
-Datawow::[class].new('_token').create({data: "image URL"})
-```
-or
-```ruby
-model = Datawow::[class].new
-model.project_key = '_token'
-model.create()
-```
-
-For available method, see [calling APIs](#avalabile_method_for_apis) section
-
-
-# Setting default token for rails project
-
-`config/initializers/datawow.rb`
-
-```ruby
-Datawow.setup do |config|
-  # ==> Secret key Configuration
-  # You can change it below and use your own secret key.
-  config.project_key = 'your token'
-end
-```
-
-# Response
-
-Response is a module and it contains data including: data, meta-data, message, and status
-#### Example of a response module
-```ruby
-<Datawow::Response @status=200, @message="success" @meta={"code"=>200, "message"=>"success"}, @data={...}, />
-```
-You can call the `data` property to get the data, which would return in the format as shown below
-
-```json
 {
-  "data": {
-    "image": {
-      "id": "5a40be59fb9d7f27354c5efa",
-      "answer": "approved",
-      "credit_charged": 1,
-      "custom_id": "custom_id",
-      "data": "image_url",
-      "postback_url": "postback_url",
-      "processed_at": "2017-12-25T16:02:00.599+07:00",
-      "project_id": "project_id",
-      "status": "processed"
+  "data" => {
+    "id" => "5dbab19ebbadfc32kefb56bf",
+    "type" => "moderation",
+    "attributes" => {
+      "custom_id" => "data-1",
+      "data" => YOUR_DATA,
+      "postback" => false,
+      "postback_url" => YOUR_POSTBACK_URL,
+      "postback_method" => YOUR_POSTBACK_METHOD,
+      "answer" => nil,
+      "created_at" => "2019-10-31T17:04:14.540+07:00",
+      "processed_at" => nil,
+      "status" => "unprocessed",
+      "id" => "5dbab19ebbadfc32kefb56bf",
+      "project_template" => YOUR_PROJECT_TEMPLATE,
+      "project_id" => YOUR_PROJECT_ID
     }
   },
-  "status": 200,
-  "message": "success",
-  "meta": {
-    "code": 200,
-    "message": "success"
+  "meta" => {
+    "code" => 201,
+    "message" => "Created"
   }
 }
 ```
----
-#### Checking status with `successful?`
+
+### All
+Method `all` is used to retrieve all of your moderations
+
 ```ruby
-if response.successful?
-  # Do stuff
-else
-  log.error("Request was not successful, something went wrong.")
-end
+CM.project_key = YOUR_PROJECT_KEY
+CM.moderation.all
 ```
 
-# Demo and Usage
- - Image Documentation [link](README/image_docs.md)
- - Video Documentation [link](README/video_docs.md)
- - Text Documentation [link](README/text_docs.md)
- - AI/Prediction Documentation [link](README/ai_docs.md)
- - Moderation Documentation [link](README/moderation_docs.md)
+#### result
+```ruby
+{
+  "data" => [
+    {
+      "id" => "5dbab19ebbadfc32kefb56bf",
+      "type" => "moderation",
+      "attributes" => {
+        "custom_id" => "data-1",
+        "data" => YOUR_DATA,
+        "postback" => false,
+        "postback_url" => YOUR_POSTBACK_URL,
+        "postback_method" => YOUR_POSTBACK_METHOD,
+        "answer" => "approved",
+        "project_template" => YOUR_PROJECT_TEMPLATE,
+        "created_at" => "2019-10-31T17:15:15.302+07:00",
+        "processed_at" => "2019-10-31T17:16:15.814+07:00",
+        "status" => "processed",
+        "id" => "5dbab19ebbadfc32kefb56bf",
+        "project_template" => YOUR_PROJECT_TEMPLATE,
+        "project_id" => YOUR_PROJECT_ID,
+      }
+    }
+  ],
+  "meta" => {
+    "code" => 200,
+    "message" => "OK"
+  }
+}
+```
+
+Fields `result` and `processed_at` will be present if your data was successfully processed.
+
+### Find by
+Method `find_by` is used to find a particular moderation. You can use either its
+ID or Custom ID. This method will return only moderation with fully matched ID.
+
+```ruby
+CM.project_key = YOUR_PROJECT_KEY
+id = 'data-1' # or use an ID from creation response (example: '5dbab19ebbadfc32kefb56bf')
+CM.moderation.find_by(id: id)
+```
+
+#### params
+
+| Field        | Type           | Required  | Description |
+| ------------- |:-------------:| :-----:| :-----|
+| id | string | **Yes** | ID or Custom ID of a moderation |
+
+#### result
+```ruby
+{
+  "data" => {
+    "id" => "5dbab19ebbadfc32kefb56bf",
+    "type" => "moderation",
+    "attributes" => {
+      "custom_id" => "tp-1",
+      "data" => YOUR_DATA,
+      "postback" => false,
+      "postback_url" => YOUR_POSTBACK_URL,
+      "postback_method" => YOUR_POSTBACK_METHOD,
+      "answer" => "approved",
+      "project_template" => YOUR_PROJECT_TEMPLATE,
+      "created_at" => "2019-10-31T17:04:14.540+07:00",
+      "processed_at" => "2019-10-31T17:05:16.243+07:00",
+      "status" => "processed",
+      "id" => "5dbab19ebbadfc32kefb56bf",
+      "project_template" => YOUR_PROJECT_TEMPLATE,
+      "project_id" => YOUR_PROJECT_ID,
+    }
+  },
+  "meta" => {
+    "code" => 200,
+    "message" => "OK"
+  }
+}
+```
