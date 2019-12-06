@@ -5,7 +5,7 @@
 Installing via rubygems:
 
 ```ruby
-gem 'cm-datawow', '~> 0.0.2'
+gem 'cm-datawow', '~> 0.0.4'
 ```
 
 ### Rails
