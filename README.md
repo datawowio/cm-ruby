@@ -19,6 +19,8 @@ $ rails generate cm:install
 First configure your project key:
 
 ```ruby
+require 'cm'
+
 CM.project_key = YOUR_PROJECT_KEY
 ```
 # Usage
@@ -29,6 +31,8 @@ method returns a response of type `CM::Response`, which has two attributes,
 
 ### Create
 ```ruby
+require 'cm'
+
 CM.project_key = YOUR_PROJECT_KEY
 params = {
   data: data,
@@ -93,6 +97,8 @@ You will receive response like below, once you created moderation successfully.
 Method `all` is used to retrieve all of your moderations
 
 ```ruby
+require  'cm'
+
 CM.project_key = YOUR_PROJECT_KEY
 CM.moderation.all
 ```
@@ -135,6 +141,8 @@ Method `find_by` is used to find a particular moderation. You can use either its
 ID or Custom ID. This method will return only moderation with fully matched ID.
 
 ```ruby
+require 'cm'
+
 CM.project_key = YOUR_PROJECT_KEY
 id = 'data-1' # or use an ID from creation response (example: '5dbab19ebbadfc32kefb56bf')
 CM.moderation.find_by(id: id)
