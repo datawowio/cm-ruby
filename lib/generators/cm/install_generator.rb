@@ -1,7 +1,7 @@
 require 'rails/generators/base'
 require 'securerandom'
 
-module CM
+module Cm
   module Generators
     # :nodoc:
     class InstallGenerator < Rails::Generators::Base
