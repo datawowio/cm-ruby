@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name          = 'cm-datawow'
-  s.version       = '0.0.2'
+  s.version       = '0.0.4'
   s.date          = '2019-12-06'
   s.summary       = 'HTTP RESTFul for calling CM APIs'
   s.description   = 'Content Moderation suite'
@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.license       = 'MIT'
   s.require_paths = ['lib']
 
-  s.add_runtime_dependency 'json', '~> 1.8',  '>= 1.8.3'
+  s.add_runtime_dependency 'json', '~> 2.2'
   s.add_development_dependency 'minitest', '~> 5.11', '>= 5.11.3'
   s.add_development_dependency 'rake', '~> 12.3'
   s.add_development_dependency 'simplecov', '~> 0.15.1'
