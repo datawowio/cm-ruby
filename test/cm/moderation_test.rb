@@ -27,7 +27,7 @@ module CM
     end
 
     def test_find_by
-      stub_request(:get, "#{MODERATION_URL}?id=test")
+      stub_request(:get, "#{MODERATION_URL}?id=test&query=test")
         .to_return(body: JSON.generate(@moderation_find_by), status: 200)
       response = model.find_by(id: 'test')
 

@@ -11,7 +11,7 @@ module CM::Interface
 
   def find_by(options = {})
     @query_str = true if @query_str.nil?
-    connector.get(options, @query_str)
+    connector.get(options.merge({ query: options[:id] }), @query_str)
   end
 
   private
