@@ -1,4 +1,4 @@
-# Content Moderation Ruby Client
+# Posmoni Ruby Client
 
 # Installation
 
