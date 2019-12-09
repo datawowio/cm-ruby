@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-module CM
+module Posmoni
   class ModerationTest < TestBase
     def test_all
       stub_request(:get, MODERATION_URL)

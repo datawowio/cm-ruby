@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class CM::Moderation
-  include CM::Interface
+class Posmoni::Moderation
+  include Posmoni::Interface
 
   attr_writer :project_key
 

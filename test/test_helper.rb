@@ -5,14 +5,14 @@ require 'simplecov'
 
 SimpleCov.start
 
-require 'cm'
+require 'posmoni'
 require 'helper/file_reader'
 require 'minitest/autorun'
 require 'webmock/minitest'
 
 class TestBase < Minitest::Test
 
-  MODERATION_URL = 'https://cm-api.datawow.io/api/v1/moderations'
+  MODERATION_URL = 'https://api.posmoni.com/api/v1/moderations'
 
   def setup
     @moderation_all = FileReader.new('test/fixtures/moderation/all.json').read_json

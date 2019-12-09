@@ -7,7 +7,7 @@ require 'json'
 
 require File.expand_path('response.rb', __dir__)
 
-module CM
+module Posmoni
   # :nodoc:
   class Connector
     def initialize(path, type, token: '', version_api: 'v1')
@@ -71,7 +71,7 @@ module CM
 
     def build_request(uri)
       request = {}
-      token = @token || CM.project_key
+      token = @token || Posmoni.project_key
 
       if (token || '').empty?
         raise ArgumentError, 'project\'s token has missed. To config about token check our document'
@@ -90,7 +90,7 @@ module CM
         raise ArgumentError, 'HTTP method is not exist, We allowed GET, POST, PUT, DELET only'
       end
 
-      request['User-Agent'] = 'CM Ruby gem client'
+      request['User-Agent'] = 'Posmoni Ruby gem client'
       request['Accept'] = 'application/json'
       request['Content-Type'] = 'application/json'
       request['Authorization'] = token
@@ -100,7 +100,7 @@ module CM
 
     def base_point(type)
       {
-        moderation: 'https://cm-api.datawow.io/api'
+        moderation: 'https://api.posmoni.com/api'
       }[type]
     end
   end

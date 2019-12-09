@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CM
+module Posmoni
   class Response
     attr_reader :body, :code
 
