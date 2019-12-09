@@ -5,13 +5,13 @@
 Installing via rubygems:
 
 ```ruby
-gem 'cm-datawow', '~> 0.0.4'
+gem 'posmoni', '~> 0.0.6'
 ```
 
 ### Rails
 
 ```bash
-$ rails generate cm:install
+$ rails generate posmoni:install
 ```
 
 # Configuration
@@ -19,28 +19,28 @@ $ rails generate cm:install
 First configure your project key:
 
 ```ruby
-require 'cm'
+require 'posmoni'
 
-CM.project_key = YOUR_PROJECT_KEY
+Posmoni.project_key = YOUR_PROJECT_KEY
 ```
 # Usage
 
 There are 3 methods available in moderation class (`create`, `all`, `find_by`). Each
-method returns a response of type `CM::Response`, which has two attributes,
+method returns a response of type `Posmoni::Response`, which has two attributes,
 `body` and `code`. You can simply access response's body by calling `.body`
 
 ### Create
 ```ruby
-require 'cm'
+require 'posmoni'
 
-CM.project_key = YOUR_PROJECT_KEY
+Posmoni.project_key = YOUR_PROJECT_KEY
 params = {
   data: data,
   postback_url: postback_url,
   postback_method: postback_method,
   custom_id: custom_id
 }
-CM.moderation.create(params)
+Posmoni.moderation.create(params)
 ```
 
 `data` could be text or image's url depends on your project's template.
@@ -56,7 +56,7 @@ CM.moderation.create(params)
 
 #### result
 ```
-response = CM.moderation.create({
+response = Posmoni.moderation.create({
   data: YOUR_DATA,
   custom_id: 'data-1'
 })
@@ -97,10 +97,10 @@ You will receive response like below, once you created moderation successfully.
 Method `all` is used to retrieve all of your moderations
 
 ```ruby
-require  'cm'
+require  'posmoni'
 
-CM.project_key = YOUR_PROJECT_KEY
-CM.moderation.all
+Posmoni.project_key = YOUR_PROJECT_KEY
+Posmoni.moderation.all
 ```
 
 #### result
@@ -141,11 +141,11 @@ Method `find_by` is used to find a particular moderation. You can use either its
 ID or Custom ID. This method will return only moderation with fully matched ID.
 
 ```ruby
-require 'cm'
+require 'posmoni'
 
-CM.project_key = YOUR_PROJECT_KEY
+Posmoni.project_key = YOUR_PROJECT_KEY
 id = 'data-1' # or use an ID from creation response (example: '5dbab19ebbadfc32kefb56bf')
-CM.moderation.find_by(id: id)
+Posmoni.moderation.find_by(id: id)
 ```
 
 #### params

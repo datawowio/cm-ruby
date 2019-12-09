@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CM::Interface
+module Posmoni::Interface
   def all(options = {})
     connector.get(options)
   end
@@ -17,6 +17,6 @@ module CM::Interface
   private
 
   def connector
-    @connection ||= CM::Connector.new(@path, @type, token: @project_key)
+    @connection ||= Posmoni::Connector.new(@path, @type, token: @project_key)
   end
 end

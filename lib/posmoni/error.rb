@@ -1,4 +1,4 @@
-module CM
+module Posmoni
 
   # Custom error class for rescuing from all API errors
   class Error < StandardError; end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cm-datawow (0.0.4)
+    posmoni (0.0.6)
       json (~> 2.2)
 
 GEM
@@ -32,8 +32,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cm-datawow!
   minitest (~> 5.11, >= 5.11.3)
+  posmoni!
   rake (~> 12.3)
   simplecov (~> 0.15.1)
   webmock (~> 3.3)
