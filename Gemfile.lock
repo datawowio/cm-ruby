@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    posmoni (0.0.5)
+    posmoni (0.0.6)
       json (~> 2.2)
 
 GEM

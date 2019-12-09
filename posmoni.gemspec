@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name          = 'posmoni'
-  s.version       = '0.0.5'
+  s.version       = '0.0.6'
   s.date          = '2019-12-09'
   s.summary       = 'HTTP RESTFul for calling Posmoni APIs'
   s.description   = 'Posmoni suite'

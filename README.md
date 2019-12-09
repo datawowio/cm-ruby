@@ -5,7 +5,7 @@
 Installing via rubygems:
 
 ```ruby
-gem 'posmoni', '~> 0.0.5'
+gem 'posmoni', '~> 0.0.6'
 ```
 
 ### Rails
