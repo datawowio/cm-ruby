@@ -38,7 +38,15 @@ params = {
   data: data,
   postback_url: postback_url,
   postback_method: postback_method,
-  custom_id: custom_id
+  custom_id: custom_id,
+  info: {
+    type: {
+      value: "driver_license"
+    },
+    dob: {
+      value: "1991/11/28"
+    }
+  }
 }
 Posmoni.moderation.create(params)
 ```
@@ -53,15 +61,16 @@ Posmoni.moderation.create(params)
 | postback_url| string| No | URL for answer callback once image has been checked |
 | postback_method| string | No | Configuration HTTP method GET POST PUT PATCH |
 | custom_id | string | No | Custom ID that used for search |
+| info | json | No | Additional info for ID card check |
 
 #### result
-```
-response = Posmoni.moderation.create({
+```ruby
+response = Posmoni.moderation.create(
   data: YOUR_DATA,
-  custom_id: 'data-1'
-})
+  custom_id: 'custom-id-1'
+)
 
-print(response.body)
+puts response.body
 ```
 
 You will receive response like below, once you created moderation successfully.
