@@ -61,7 +61,6 @@ Posmoni.moderation.create(params)
 | postback_url| string| No | URL for answer callback once image has been checked |
 | postback_method| string | No | Configuration HTTP method GET POST PUT PATCH |
 | custom_id | string | No | Custom ID that used for search |
-| info | json | No | Additional info for ID card check |
 
 #### result
 ```ruby
@@ -112,6 +111,15 @@ Posmoni.project_key = YOUR_PROJECT_KEY
 Posmoni.moderation.all
 ```
 
+#### params
+
+| Field        | Type           | Required  | Description |
+| ------------- |:-------------:| :-----:| :-----|
+| sort_by | string | **No** | Sorting field (default: `id`) |
+| sort_direction | string | **No** | Sorting direction (default: `desc`) |
+| page | string | **No** | Number of page (default: `1`) |
+| per_page | string | **No** | Number of item per page (default: `10`) |
+
 #### result
 ```ruby
 {
@@ -143,7 +151,7 @@ Posmoni.moderation.all
 }
 ```
 
-Fields `result` and `processed_at` will be present if your data was successfully processed.
+Fields `result` and `processed_at` will be present when your data was successfully processed.
 
 ### Find by
 Method `find_by` is used to find a particular moderation. You can use either its
